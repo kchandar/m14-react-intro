@@ -35,8 +35,7 @@ var EmployeeTable = React.createClass({
                             return <Employee key={'employee-' + i}
                                              name={d.name}
                                              salary={d.salary}
-                                             title={d.title}
-                                />
+                                             title={d.title} />
                         })}
                     </tbody>
                 </table>
@@ -51,15 +50,23 @@ var EmployeeSearch = React.createClass({
         return({searchString:''});
     },
     // Add a filter funciton
-
+    filter:function(e) {
+        console.log(e.target.value);
+        this.setState({searchString:e.target.value})
+    },        
     render:function() {
         var employees = this.props.data;
-
-        // Use this.state.searchString to filter down the `employees` array
+        var searchString = this.state.searchString.trim().toLowerCase();
+        if(searchString.length > 0){
+           // We are searching. Filter the results.
+           employees = employees.filter(function(employee){
+               return employee.name.toLowerCase().match(searchString);
+           });
+        }// Use this.state.searchString to filter down the `employees` array
 
         return(
             <div>
-                <input placeholder="Search employees"/>
+                <input onChange={this.filter} placeholder="Search employees"/>
                 <EmployeeTable data={employees}/>
             </div>
         )
