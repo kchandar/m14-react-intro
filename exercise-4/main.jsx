@@ -62,7 +62,8 @@ var EmployeeSearch = React.createClass({
            employees = employees.filter(function(employee){
                return employee.name.toLowerCase().match(searchString);
            });
-        }// Use this.state.searchString to filter down the `employees` array
+        }
+        // Use this.state.searchString to filter down the `employees` array
 
         return(
             <div>
