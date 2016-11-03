@@ -51,7 +51,6 @@ var EmployeeSearch = React.createClass({
     },
     // Add a filter funciton
     filter:function(e) {
-        console.log(e.target.value);
         this.setState({searchString:e.target.value})
     },        
     render:function() {
